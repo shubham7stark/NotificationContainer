@@ -18,14 +18,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="18dp"
             android:text="Snooze notification after a particular time"
             />
-        <Switch
-            android:id="@+id/toggle_after_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
     </LinearLayout>
+
+    <Switch
+        android:id="@+id/toggle_after_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"/>
 
     <TextView
         android:id="@+id/tv_after_time"
@@ -33,7 +35,7 @@
         android:layout_height="wrap_content"
         android:textColor="#3333ff"
         android:text="00:00"
-        android:textSize="20dp"
+        android:textSize="24dp"
         android:layout_gravity="right"
         />
 
@@ -41,8 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#999999"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"/>
+        android:layout_margin="16dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,14 +52,16 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14dp"
+            android:textSize="18dp"
             android:text="Snooze notification at a particular time"
             />
-        <Switch
-            android:id="@+id/toggle_at_time"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content" />
     </LinearLayout>
+
+    <Switch
+        android:id="@+id/toggle_at_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"/>
 
     <TextView
         android:id="@+id/tv_at_time"
@@ -66,7 +69,7 @@
         android:layout_height="wrap_content"
         android:textColor="#3333ff"
         android:text="00:00"
-        android:textSize="20dp"
+        android:textSize="24dp"
         android:layout_gravity="right"
         />
 
@@ -74,8 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#999999"
-        android:paddingTop="16dp"
-        android:paddingBottom="16dp"/>
+        android:layout_margin="16dp"/>
 
 </LinearLayout>
 
