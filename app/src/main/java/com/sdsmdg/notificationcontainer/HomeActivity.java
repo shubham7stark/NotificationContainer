@@ -19,13 +19,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     private static final String TAG_SCH = "Scheduled";
     private static final String TAG_IMPORTANT = "Important";
     private static final String TAG_TRASH = "Trash";
     public static String CURRENT_TAG = TAG_TRASH;
 
+    private String[] activityTitles = {"Schedule","Important","Trash","About Us", "Settings"};
     private TextView txtView;
     private NotificationReceiver nReceiver;
     private PendingIntent pendingIntent;
@@ -47,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
 
         drawer = (DrawerLayout)findViewById(R.id.drawer_layout);
         navigationView = (NavigationView)findViewById(R.id.nav_view);
+        setUpNavigationView();
 
         txtView = (TextView) findViewById(R.id.textView);
         nReceiver = new NotificationReceiver();
@@ -82,49 +84,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private void setUpNavigationView() {
         //Setting Navigation View Item Selected Listener to handle the item click of the navigation menu
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
-
-            // This method will trigger on item Click of navigation menu
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-
-                //Check to see which item was being clicked and perform appropriate action
-                switch (menuItem.getItemId()) {
-                    //Replacing the main content with ContentFragment Which is our Inbox View;
-                    case R.id.nav_sch:
-                        navItemIndex = 0;
-                        CURRENT_TAG = TAG_SCH;
-                        break;
-                    case R.id.nav_imp:
-                        navItemIndex = 1;
-                        CURRENT_TAG = TAG_IMPORTANT;
-                        break;
-                    case R.id.nav_trash:
-                        navItemIndex = 2;
-                        CURRENT_TAG = TAG_TRASH;
-                        break;
-                    case R.id.nav_settings:
-                        break;
-                    case R.id.nav_about_us:
-                        break;
-                    default:
-                        navItemIndex = 0;
-
-                }
-
-                //Checking if the item is in checked state or not, if not make it in checked state
-                if (menuItem.isChecked()) {
-                    menuItem.setChecked(false);
-                } else {
-                    menuItem.setChecked(true);
-                }
-                menuItem.setChecked(true);
-
-                //loadHomeFragment();
-
-                return true;
-            }
-        });
+        navigationView.setNavigationItemSelectedListener(this);
 
 
         ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.openDrawer, R.string.closeDrawer) {
@@ -146,6 +106,69 @@ public class HomeActivity extends AppCompatActivity {
         drawer.setDrawerListener(actionBarDrawerToggle);
         //calling sync state is necessary or else your hamburger icon wont show up
         actionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem menuItem) {
+
+        //Check to see which item was being clicked and perform appropriate action
+        switch (menuItem.getItemId()) {
+            //Replacing the main content with ContentFragment Which is our Inbox View;
+            case R.id.nav_sch:
+                navItemIndex = 0;
+                CURRENT_TAG = TAG_SCH;
+                break;
+            case R.id.nav_imp:
+                navItemIndex = 1;
+                CURRENT_TAG = TAG_IMPORTANT;
+                break;
+            case R.id.nav_trash:
+                navItemIndex = 2;
+                CURRENT_TAG = TAG_TRASH;
+                break;
+            case R.id.nav_settings:
+                navItemIndex = 3;
+                Intent intent = new Intent(this,SettingsActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_about_us:
+                navItemIndex = 4;
+                Intent intent2 = new Intent(this,AboutUsActivity.class);
+                startActivity(intent2);
+                break;
+            default:
+                navItemIndex = 3;
+        }
+
+        //Checking if the item is in checked state or not, if not make it in checked state
+        if (menuItem.isChecked()) {
+            menuItem.setChecked(false);
+        } else {
+            menuItem.setChecked(true);
+        }
+        menuItem.setChecked(true);
+
+        //loadHomeFragment();
+        return true;
+    }
+
+    private void loadHomeFragment() {
+        // selecting appropriate nav menu item
+        selectNavMenu();
+        // set toolbar title
+        setToolbarTitle();
+        //Closing drawer on item click
+        drawer.closeDrawers();
+        // refresh toolbar menu
+        invalidateOptionsMenu();
+    }
+
+    private void setToolbarTitle() {
+        getSupportActionBar().setTitle(activityTitles[navItemIndex]);
+    }
+
+    private void selectNavMenu() {
+        navigationView.getMenu().getItem(navItemIndex).setChecked(true);
     }
 
     public void buttonClicked(View v){
