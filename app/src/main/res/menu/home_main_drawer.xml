@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_sch"
+            android:icon="@drawable/resch_icon"
+            android:title="Scheduled" />
+        <item
+            android:id="@+id/nav_imp"
+            android:icon="@drawable/imp_icon"
+            android:title="Important" />
+        <item
+            android:id="@+id/nav_trash"
+            android:icon="@drawable/trash_icon"
+            android:title="Trash" />
+
+    </group>
+
+    <item android:title="Other">
+        <menu>
+            <item
+                android:id="@+id/nav_about_us"
+                android:title="About Us" />
+            <item
+                android:id="@+id/nav_settings"
+                android:title="Settings" />
+        </menu>
+    </item>
+
+</menu>
