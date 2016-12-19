@@ -17,7 +17,7 @@ public class NLService extends NotificationListenerService{
     private NLServiceReceiver nlservicereciver;
 
     @Override
-    public void onCreate() {
+    public void onCreate(){
         super.onCreate();
         nlservicereciver = new NLServiceReceiver();
         IntentFilter filter = new IntentFilter();
@@ -31,7 +31,7 @@ public class NLService extends NotificationListenerService{
     }
 
     @Override
-    public void onNotificationPosted(StatusBarNotification sbn) {
+    public void onNotificationPosted(StatusBarNotification sbn){
         Log.i(TAG,"**********  onNotificationPosted");
         Log.i(TAG,"ID :" + sbn.getId() + "t" + sbn.getNotification().tickerText + "t" + sbn.getPackageName());
         Intent i = new  Intent("com.sdsmdg.notificationcontainer.NOTIFICATION_LISTENER_EXAMPLE");
