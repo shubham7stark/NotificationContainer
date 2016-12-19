@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">NotificationContainer</string>
+    <string name="app_name">Notification Container</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
 
